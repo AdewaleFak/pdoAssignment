@@ -2,14 +2,14 @@
 require_once 'database.php';
 
 
-    $db = Database::getDb();
-    $sql = "SELECT * FROM authors";
-    $pdostm = $db->prepare($sql);
+$db = Database::getDb();
+$sql = "SELECT * FROM authors";
+$pdostm = $db->prepare($sql);
 //specify fetch method
-    $pdostm->setFetchMode(PDO::FETCH_OBJ);
-    $pdostm->execute();
+$pdostm->setFetchMode(PDO::FETCH_OBJ);
+$pdostm->execute();
 //fetch all result
-    $authors = $pdostm->fetchAll(PDO::FETCH_OBJ);
+$authors = $pdostm->fetchAll(PDO::FETCH_OBJ);
 
 
 ?>

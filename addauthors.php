@@ -8,13 +8,12 @@ if(isset($_POST['submit'])){
     $db = Database::getDb();
     $sql = "INSERT INTO authors (fname, lname, code)
             VALUES (:fname, :lname, :code)";
-    $pdostm = $db->prepare($sql);
-    $pdostm->bindValue(':fname', $fname, PDO::PARAM_STR);
-    $pdostm->bindValue(':lname', $lname, PDO::PARAM_STR);
-    $pdostm->bindValue(':code', $code, PDO::PARAM_STR);
-    $count  = $pdostm->execute();
+
+    $a =  new Author();
+    $count=$a->addAuthor($db, $fname, $lname, $code);
+
     header("Location: listauthors.php");
-    //echo "inserted " . $count;
+    echo "New Author Inserted " . $count;
 }
 ?>
 
