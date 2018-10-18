@@ -5,7 +5,7 @@ require_once 'authors.php';
 
 $db = Database::getDb();
 $a = new Author();
-$count = $a->getAllAuthor($db);
+$count = $a->getAllAuthor(Database::getDb());
 
 if($count){
     header("Location: listauthors.php");

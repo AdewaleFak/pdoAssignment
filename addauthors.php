@@ -1,6 +1,8 @@
 <?php
 require_once 'database.php';
 require_once 'authors.php';
+
+
 if(isset($_POST['submit'])){
     //get form values and assign to local varaibles
     $fname = $_POST['fname'];

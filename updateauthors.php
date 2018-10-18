@@ -2,6 +2,8 @@
 
 require_once 'database.php';
 require_once 'authors.php';
+
+
 $db= Database::getDb();
 $a = new Author();
 
