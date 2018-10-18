@@ -1,15 +1,18 @@
 <?php
 require_once 'database.php';
+require_once 'authors.php';
 
 
 $db = Database::getDb();
-$sql = "SELECT * FROM authors";
-$pdostm = $db->prepare($sql);
-//specify fetch method
-$pdostm->setFetchMode(PDO::FETCH_OBJ);
-$pdostm->execute();
-//fetch all result
-$authors = $pdostm->fetchAll(PDO::FETCH_OBJ);
+$a = new Author();
+$count = $a->getAllAuthor($db);
+
+if($count){
+    header("Location: listauthors.php");
+}else {
+    echo "Problem Updating";
+}
+
 
 
 ?>

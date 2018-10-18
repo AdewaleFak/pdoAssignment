@@ -1,32 +1,22 @@
 <?php
 
 require_once 'database.php';
+require_once 'authors.php';
 $db= Database::getDb();
+$a = new Author();
+
 if(isset($_POST['update'])) {
     $code = $_POST['code'];
-    $query = "SELECT * FROM authors WHERE code= :code";
-    $pdostm = $db->prepare($query);
-    $pdostm->bindValue(':code', $code, PDO::PARAM_INT);
-    $pdostm->execute();
-    $su = $pdostm->fetch(PDO::FETCH_OBJ);
+    $a->getAuthorByCode($db, $code);
+
 }
 if(isset($_POST['upt'])){
     $code = $_POST['code'];
     $fname = $_POST['fname'];
     $lname = $_POST['lname'];
 
+    $count=$a->authorUpdate($db,$code,$fname,$lname);
 
-    $sql = "UPDATE authors 
-                SET fname = :fname,
-                lname = :lname
-                WHERE code = :code";
-    $pdostm = $db->prepare($sql);
-
-    $pdostm->bindValue(':code', $code, PDO::PARAM_INT);
-    $pdostm->bindValue(':fname', $fname, PDO::PARAM_STR);
-    $pdostm->bindValue(':lname', $lname, PDO::PARAM_STR);
-
-    $count  = $pdostm->execute();
     if($count){
         header("Location: listauthors.php");
     }else {

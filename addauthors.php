@@ -1,5 +1,6 @@
 <?php
 require_once 'database.php';
+require_once 'authors.php';
 if(isset($_POST['submit'])){
     //get form values and assign to local varaibles
     $fname = $_POST['fname'];
@@ -13,7 +14,7 @@ if(isset($_POST['submit'])){
     $count=$a->addAuthor($db, $fname, $lname, $code);
 
     header("Location: listauthors.php");
-    echo "New Author Inserted " . $count;
+    echo "New Author ". $count. " Inserted " ;
 }
 ?>
 

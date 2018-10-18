@@ -1,13 +1,14 @@
 <?php
-
-
+require_once 'authors.php';
 require_once 'database.php';
+
+
 $code = $_POST['code'];
 $db = Database::getDb();
-$query = "DELETE FROM authors WHERE code = :code";
-$pdostm = $db->prepare($query);
-$pdostm->bindValue(':code', $code, PDO::PARAM_INT);
-$count = $pdostm->execute();
+$a = new Author();
+
+$count = $a->deleteAuthor($db, $code);
+
 if($count){
     header("Location: listauthors.php");
 }else {
